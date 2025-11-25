@@ -1,0 +1,6 @@
+//1.1970.
+//2.Frank.
+//3.O Banco De Dados vai armazenar as informações, o Sistema Gerenciador Do Banco De Dados vai gerar as informações do banco de dados e o Sistema Do Banco De Dados vai criar o banco de dados e suas informações.
+//4.Informacao do consumidor => Acão => Informação resultante.
+//5.---.
+//6.Para gerenciar e guardar informações mais efetivamente.
