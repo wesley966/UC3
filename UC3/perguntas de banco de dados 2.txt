@@ -1,0 +1,71 @@
+//1.1970.
+//2.Edgar Frank.
+//3.O Banco De Dados vai armazenar as informações, o Sistema Gerenciador Do Banco De Dados vai gerar as informações do banco de dados e o Sistema Do Banco De Dados vai criar o banco de dados e suas informações.
+//4.Informacao do consumidor => Acão => Informação resultante.
+//5.---.
+//6.Para gerenciar e guardar informações mais efetivamente.
+
+
+
+
+25/11/2025
+//1.O que é o SGBD escolhido ?Quem criou?
+InfluxDB 
+
+O InfluxDB foi criado por Paul Dix e Todd Persen em 2012. A empresa que desenvolveu o InfluxDB, Influxdata, foi fundada para enfrentar as ineficiências dos bancos de dados tradicionais ao lidar com dados de séries temporais. O InfluxDB é um banco de dados de código aberto projetado para alto desempenho e escalabilidade, sendo amplamente utilizado em aplicativos de monitoramento e análise. 
+
+Referencias:
+canvasbusinessmodel.com
+
+//2.Caracteristicas e diferencial do SGBD para os outros:
+
+Desempenho Excepcional: O InfluxDB é projetado para lidar com um alto volume de consultas e escritas por segundo, sem causar impacto significativo no sistema operacional. 
+1
+Sintaxe SQL-like: A sintaxe do InfluxDB é semelhante à do SQL, facilitando a compreensão para quem já trabalha com SQL. 
+1
+Interface HTTP: Permite manipulação dos dados através de uma interface HTTP, com possibilidade de criação, exclusão, escrita, modificação e outras operações. 
+1
+Gestão de Dados: Ferramentas como Telegraf, Chronograf e Kapacitor são distribuídas para a gestão do InfluxDB. 
+1
+Aplicações de Monitoramento: Ideal para aplicações de monitoramento em tempo real, como o uso com o Grafana para geração de gráficos e histórico de anos. 
+1
+Compatibilidade com WordPress: Para aplicações WordPress, recomenda-se o uso do MySQL, pois é compatível com o tipo de banco de dados que a plataforma requer. 
+
+Referencias:
+serverdo.in
+
+//3.Como utilizar:
+
+Para usar o InfluxDB, siga estas etapas básicas:
+Instalação: Baixe e instale o InfluxDB seguindo o manual de instalação oficial ou usando um Docker container para facilitar o processo. 
+
+Acesso ao Cliente: Abra o cliente do banco de dados dentro do container usando o comando $ influx. 
+
+Conexão ao Banco de Dados: Use o comando influx -host <endereço_do_servidor> -port <porta> para se conectar ao banco de dados. 
+
+Execução de Consultas: Utilize o comando flux dentro do CLI para realizar consultas usando Flux. 
+
+
+Essas etapas fornecem uma base sólida para começar a usar o InfluxDB e explorar suas capacidades de armazenamento e manipulação de dados. Para mais detalhes e tutoriais, consulte os links fornecidos nos resultados de pesquisa. 
+
+Referencias:
+YouTube e guicruzzs.GitHub
+ 
+
+//4.Exemplos de comandos:
+
+Introdução ao InfluxDB para Automação Industrial
+
+Aqui estão alguns exemplos de comandos do InfluxDB:
+Criar uma nova database: CREATE DATABASE mydb. 
+
+Listar todas as databases: SHOW DATABASES. 
+
+Criar uma tabela: CREATE TABLE mytable measurement TEXT, temperature INT, humidity INT. 
+
+Inserir dados: INSERT INTO mytable VALUES (25, 30, 45). 
+
+Filtrar dados: SELECT * FROM mytable WHERE temperature > 30. 
+
+Referencias:
+glarity.app e guicruzzs.GitHub
