@@ -1,0 +1,72 @@
+/* Aplicativo_Spotify_Físico: */
+
+CREATE TABLE User (
+    ID_User Number(3) PRIMARY KEY,
+    User_street String(10),
+    Name_User String(10),
+    Email_User String(10),
+    Birth_date_User Number(9)
+);
+
+CREATE TABLE Playlist (
+    ID_Playlist Number(3) PRIMARY KEY,
+    Name_Playlist String(10),
+    Number_Playlist Number(3),
+    Creation_Date Number(6),
+    ID_user Number(3),
+    ID_Title Number(3)
+);
+
+CREATE TABLE Title (
+    ID_Title Number(3) PRIMARY KEY,
+    Number_Title Number(3),
+    Name_Title String(10),
+    Creation_date_Title Number(6)
+);
+
+CREATE TABLE Content (
+    Content_Number Number(3),
+    Content_Style String(10),
+    ID_Playlist Number(3),
+    ID_Artist Number(3)
+);
+
+CREATE TABLE Artist (
+    ID_Artist Number(3) PRIMARY KEY,
+    Name_Artist String(10),
+    Email_Artist String(10),
+    Birth_Date_Artist Number(6),
+    Artist_Street String(10)
+);
+
+CREATE TABLE Genre (
+    Genre_Number Number(2),
+    Genre_Atributes String(10),
+    ID_Title Number(3),
+    ID_Music Number(3)
+);
+
+CREATE TABLE Music (
+    ID_Music Number(3) PRIMARY KEY,
+    Number_Music Number(3),
+    Type-Music String(10),
+    Music_Qualification Number(2)
+);
+
+CREATE TABLE Liricks (
+    ID_Liricks Number(3) PRIMARY KEY,
+    Liricks_Lines Number(2),
+    Music_Liricks String(10)
+);
+ 
+ALTER TABLE Playlist ADD CONSTRAINT FK_Playlist_2
+    FOREIGN KEY (ID_user???, ID_Title???)
+    REFERENCES ??? (???);
+ 
+ALTER TABLE Content ADD CONSTRAINT FK_Content_1
+    FOREIGN KEY (ID_Playlist???, ID_Artist???)
+    REFERENCES ??? (???);
+ 
+ALTER TABLE Genre ADD CONSTRAINT FK_Genre_1
+    FOREIGN KEY (ID_Title???, ID_Music???)
+    REFERENCES ??? (???);
