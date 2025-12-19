@@ -1,0 +1,392 @@
+/* SIMULADO_APLICATIVO_STREAMING_FISICO: */
+
+CREATE TABLE User (
+    ID_User Number(3),
+    Name_User String(10),
+    Email_User String(20),
+    Data_of_Account Number(6),
+    fk_Serie_ID_Serie Number(3),
+    PRIMARY KEY (ID_User, fk_Serie_ID_Serie)
+);
+
+CREATE TABLE Movie (
+    Movie_date Number(6),
+    Movie_High_Score Number(1),
+    Movie_Name String(10),
+    ID_Movie Number(3),
+    fk_Serie_ID_Serie Number(3),
+    PRIMARY KEY (ID_Movie, fk_Serie_ID_Serie)
+);
+
+CREATE TABLE Gender (
+    Gender_Number Number(2),
+    Gender_Classification Number(2),
+    Gender_Name String(10),
+    ID_Genero Number(3) PRIMARY KEY
+);
+
+CREATE TABLE Episode (
+    ID_Episode Number(3) PRIMARY KEY,
+    Episode_Name String(10),
+    Episode_Number Number(2),
+    Episode_Credits String(100)
+);
+
+CREATE TABLE Time (
+    ID_Time Number(3),
+    Time_Number Number(4),
+    Time_Hours Number(2),
+    Time_Seconds Number(2)
+);
+
+CREATE TABLE Actor (
+    Actor_Date_of_Birth Number(6),
+    Actor_Movies String(100)),
+    Actors_Name String(10),
+    ID_Actor Number(3) PRIMARY KEY
+);
+
+CREATE TABLE Serie (
+    Serie_High_Score Number(1),
+    ID_Serie Number(3) PRIMARY KEY,
+    Serie_Name String(10),
+    Serie_Date Number(6)
+);
+
+CREATE TABLE Wish_List_Chose_User_Movie_Serie (
+    ID_Wish_List Number(3) PRIMARY KEY,
+    Wish_List_Name String(10),
+    Wish_List_Number number(3),
+    Wish_List_date Number(6),
+    fk_User_ID_User Number(3),
+    fk_User_fk_Serie_ID_Serie Number(3),
+    fk_Movie_ID_Movie Number(3),
+    fk_Movie_fk_Serie_ID_Serie Number(3),
+    fk_Serie_ID_Serie Number(3)
+);
+
+CREATE TABLE Comentary_Chose (
+    Comentary_Date Number(6),
+    Comentary_Number Number(3),
+    Comentary_Name String(10),
+    ID_Comentary Number(3) PRIMARY KEY,
+    fk_Serie_ID_Serie Number(3),
+    fk_Movie_ID_Movie Number(3),
+    fk_Movie_fk_Serie_ID_Serie Number(3)
+);
+
+CREATE TABLE Avaliation_Chose (
+    Avaliation_Leters Number(3)),
+    Avaliation_Data Number(6),
+    Avaliacion_Number Number(3),
+    ID_Avaliation Number(3) PRIMARY KEY,
+    fk_Movie_ID_Movie Number(3),
+    fk_Movie_fk_Serie_ID_Serie Number(3),
+    fk_Serie_ID_Serie Number(3)
+);
+
+CREATE TABLE Have (
+    fk_Actor_ID_Actor Number(3),
+    fk_Movie_ID_Movie Number(3),
+    fk_Movie_fk_Serie_ID_Serie Number(3)
+);
+
+CREATE TABLE Have (
+    fk_Serie_ID_Serie Number(3),
+    fk_Episode_ID_Episode Number(3)
+);
+
+CREATE TABLE Have (
+    fk_Movie_ID_Movie Number(3),
+    fk_Movie_fk_Serie_ID_Serie Number(3),
+    fk_Gender_ID_Genero Number(3)
+);
+
+CREATE TABLE Have (
+    fk_Episode_ID_Episode Number(3),
+    fk_Gender_ID_Genero Number(3)
+);
+
+CREATE TABLE Have (
+    fk_Movie_ID_Movie Number(3),
+    fk_Movie_fk_Serie_ID_Serie Number(3)
+);
+
+CREATE TABLE Have (
+    fk_Serie_ID_Serie Number(3),
+    fk_Actor_ID_Actor Number(3)
+);
+ 
+ALTER TABLE User ADD CONSTRAINT FK_User_2
+    FOREIGN KEY (fk_Serie_ID_Serie)
+    REFERENCES Serie (ID_Serie)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Movie ADD CONSTRAINT FK_Movie_2
+    FOREIGN KEY (fk_Serie_ID_Serie)
+    REFERENCES Serie (ID_Serie)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Wish_List_Chose_User_Movie_Serie ADD CONSTRAINT FK_Wish_List_Chose_User_Movie_Serie_2
+    FOREIGN KEY (fk_User_ID_User, fk_User_fk_Serie_ID_Serie)
+    REFERENCES User (ID_User, fk_Serie_ID_Serie);
+ 
+ALTER TABLE Wish_List_Chose_User_Movie_Serie ADD CONSTRAINT FK_Wish_List_Chose_User_Movie_Serie_3
+    FOREIGN KEY (fk_Movie_ID_Movie, fk_Movie_fk_Serie_ID_Serie)
+    REFERENCES Movie (ID_Movie, fk_Serie_ID_Serie);
+ 
+ALTER TABLE Wish_List_Chose_User_Movie_Serie ADD CONSTRAINT FK_Wish_List_Chose_User_Movie_Serie_4
+    FOREIGN KEY (fk_Serie_ID_Serie)
+    REFERENCES Serie (ID_Serie);
+ 
+ALTER TABLE Comentary_Chose ADD CONSTRAINT FK_Comentary_Chose_2
+    FOREIGN KEY (fk_Serie_ID_Serie)
+    REFERENCES Serie (ID_Serie);
+ 
+ALTER TABLE Comentary_Chose ADD CONSTRAINT FK_Comentary_Chose_3
+    FOREIGN KEY (fk_Movie_ID_Movie, fk_Movie_fk_Serie_ID_Serie)
+    REFERENCES Movie (ID_Movie, fk_Serie_ID_Serie);
+ 
+ALTER TABLE Avaliation_Chose ADD CONSTRAINT FK_Avaliation_Chose_2
+    FOREIGN KEY (fk_Movie_ID_Movie, fk_Movie_fk_Serie_ID_Serie)
+    REFERENCES Movie (ID_Movie, fk_Serie_ID_Serie);
+ 
+ALTER TABLE Avaliation_Chose ADD CONSTRAINT FK_Avaliation_Chose_3
+    FOREIGN KEY (fk_Serie_ID_Serie)
+    REFERENCES Serie (ID_Serie);
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_1
+    FOREIGN KEY (fk_Actor_ID_Actor)
+    REFERENCES Actor (ID_Actor)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_2
+    FOREIGN KEY (fk_Movie_ID_Movie, fk_Movie_fk_Serie_ID_Serie)
+    REFERENCES Movie (ID_Movie, fk_Serie_ID_Serie)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_1
+    FOREIGN KEY (fk_Serie_ID_Serie)
+    REFERENCES Serie (ID_Serie)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_2
+    FOREIGN KEY (fk_Episode_ID_Episode)
+    REFERENCES Episode (ID_Episode)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_1
+    FOREIGN KEY (fk_Movie_ID_Movie, fk_Movie_fk_Serie_ID_Serie)
+    REFERENCES Movie (ID_Movie, fk_Serie_ID_Serie)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_2
+    FOREIGN KEY (fk_Gender_ID_Genero)
+    REFERENCES Gender (ID_Genero)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_1
+    FOREIGN KEY (fk_Episode_ID_Episode)
+    REFERENCES Episode (ID_Episode)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_2
+    FOREIGN KEY (fk_Gender_ID_Genero)
+    REFERENCES Gender (ID_Genero)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_1
+    FOREIGN KEY (fk_Movie_ID_Movie, fk_Movie_fk_Serie_ID_Serie)
+    REFERENCES Movie (ID_Movie, fk_Serie_ID_Serie)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_1
+    FOREIGN KEY (fk_Serie_ID_Serie)
+    REFERENCES Serie (ID_Serie)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_2
+    FOREIGN KEY (fk_Actor_ID_Actor)
+    REFERENCES Actor (ID_Actor)
+    ON DELETE SET NULL;/* SIMULADO_APLICATIVO_STREAMING_FISICO
+: */
+
+CREATE TABLE User (
+    ID_User Number(3) PRIMARY KEY,
+    Name_User String(10),
+    Email_User String(20),
+    Data_of_Account Date
+);
+
+CREATE TABLE Movie (
+    Movie_date Date,
+    Movie_High_Score Number(10),
+    Movie_Name String(10),
+    ID_Movie Number(3),
+    fk_Serie_ID_Serie Number(3),
+    PRIMARY KEY (ID_Movie, fk_Serie_ID_Serie)
+);
+
+CREATE TABLE Gender (
+    Gender_Number Number(2),
+    Gender_Classification Number(2),
+    Gender_Name String(10),
+    ID_Genero Number(3) PRIMARY KEY
+);
+
+CREATE TABLE Episode (
+    ID_Episode Number(3) PRIMARY KEY,
+    Episode_Name String(10),
+    Episode_Number Number(8),
+    Episode_Credits String(100),
+    Duration Time
+);
+
+CREATE TABLE Actor (
+    Actor_Date_of_Birth Date,
+    Actor_Movies String(100),
+    Actors_Name String(10),
+    ID_Actor Number(3) PRIMARY KEY
+);
+
+CREATE TABLE Serie (
+    Serie_High_Score Number(10),
+    ID_Serie Number(3) PRIMARY KEY,
+    Serie_Name String(10),
+    Serie_Date Date
+);
+
+CREATE TABLE Wish_List_Chose (
+    ID_Wish_List Number(3) PRIMARY KEY,
+    Wish_List_Name String(10),
+    Wish_List_Number Number(3),
+    Wish_List_date Date,
+    fk_User_ID_User Number(3),
+    fk_Content_ID_Content Number(3),
+    fk_Content_fk_Serie_ID_Serie Number(3)
+);
+
+CREATE TABLE Comentary_Chose (
+    Comentary_Date Date,
+    Comentary_Number Number(3),
+    Comentary_Name String(10),
+    ID_Comentary Number(3) PRIMARY KEY,
+    fk_Content_ID_Content Number(3),
+    fk_Content_fk_Serie_ID_Serie Number(3),
+    fk_User_ID_User Number(3)
+);
+
+CREATE TABLE Avaliation_Watch (
+    Avaliation_Leters Number(100),
+    Avaliation_Data Number(100),
+    Avaliacion_Number number(3),
+    ID_Avaliation Number(3) PRIMARY KEY,
+    fk_User_ID_User Number(3),
+    fk_Content_ID_Content Number(3),
+    fk_Content_fk_Serie_ID_Serie Number(3)
+);
+
+CREATE TABLE Content (
+    ID_Content Number(3),
+    Content_Name String(10),
+    Content_Number Number(10),
+    Content_Director String(10),
+    fk_Serie_ID_Serie Number(3),
+    PRIMARY KEY (ID_Content, fk_Serie_ID_Serie)
+);
+
+CREATE TABLE Have (
+    fk_Serie_ID_Serie Number(3),
+    fk_Episode_ID_Episode Number(3)
+);
+
+CREATE TABLE Have (
+    fk_Movie_ID_Movie Number(3),
+    fk_Movie_fk_Serie_ID_Serie Number(3),
+    fk_Gender_ID_Genero Number(3)
+);
+
+CREATE TABLE Have (
+    fk_Serie_ID_Serie Number(3),
+    fk_Gender_ID_Genero Number(3)
+);
+
+CREATE TABLE Have (
+    fk_Actor_ID_Actor Number(3),
+    fk_Content_ID_Content Number(3),
+    fk_Content_fk_Serie_ID_Serie Number(3)
+);
+ 
+ALTER TABLE Movie ADD CONSTRAINT FK_Movie_2
+    FOREIGN KEY (fk_Serie_ID_Serie)
+    REFERENCES Serie (ID_Serie)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Wish_List_Chose ADD CONSTRAINT FK_Wish_List_Chose_2
+    FOREIGN KEY (fk_User_ID_User)
+    REFERENCES User (ID_User);
+ 
+ALTER TABLE Wish_List_Chose ADD CONSTRAINT FK_Wish_List_Chose_3
+    FOREIGN KEY (fk_Content_ID_Content, fk_Content_fk_Serie_ID_Serie)
+    REFERENCES Content (ID_Content, fk_Serie_ID_Serie);
+ 
+ALTER TABLE Comentary_Chose ADD CONSTRAINT FK_Comentary_Chose_2
+    FOREIGN KEY (fk_Content_ID_Content, fk_Content_fk_Serie_ID_Serie)
+    REFERENCES Content (ID_Content, fk_Serie_ID_Serie);
+ 
+ALTER TABLE Comentary_Chose ADD CONSTRAINT FK_Comentary_Chose_3
+    FOREIGN KEY (fk_User_ID_User)
+    REFERENCES User (ID_User);
+ 
+ALTER TABLE Avaliation_Watch ADD CONSTRAINT FK_Avaliation_Watch_2
+    FOREIGN KEY (fk_User_ID_User)
+    REFERENCES User (ID_User);
+ 
+ALTER TABLE Avaliation_Watch ADD CONSTRAINT FK_Avaliation_Watch_3
+    FOREIGN KEY (fk_Content_ID_Content, fk_Content_fk_Serie_ID_Serie)
+    REFERENCES Content (ID_Content, fk_Serie_ID_Serie);
+ 
+ALTER TABLE Content ADD CONSTRAINT FK_Content_2
+    FOREIGN KEY (fk_Serie_ID_Serie)
+    REFERENCES Serie (ID_Serie)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_1
+    FOREIGN KEY (fk_Serie_ID_Serie)
+    REFERENCES Serie (ID_Serie)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_2
+    FOREIGN KEY (fk_Episode_ID_Episode)
+    REFERENCES Episode (ID_Episode)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_1
+    FOREIGN KEY (fk_Movie_ID_Movie, fk_Movie_fk_Serie_ID_Serie)
+    REFERENCES Movie (ID_Movie, fk_Serie_ID_Serie)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_2
+    FOREIGN KEY (fk_Gender_ID_Genero)
+    REFERENCES Gender (ID_Genero)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_1
+    FOREIGN KEY (fk_Serie_ID_Serie)
+    REFERENCES Serie (ID_Serie)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_2
+    FOREIGN KEY (fk_Gender_ID_Genero)
+    REFERENCES Gender (ID_Genero)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_1
+    FOREIGN KEY (fk_Actor_ID_Actor)
+    REFERENCES Actor (ID_Actor)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Have ADD CONSTRAINT FK_Have_2
+    FOREIGN KEY (fk_Content_ID_Content, fk_Content_fk_Serie_ID_Serie)
+    REFERENCES Content (ID_Content, fk_Serie_ID_Serie)
+    ON DELETE RESTRICT;
